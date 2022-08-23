@@ -1,1 +1,124 @@
-<p>register works!</p>
+<div class="mt-4 p-4">
+  <div class="alert alert-success" role="alert" *ngIf="successRegister">
+    Registrado Correctamente, enviamos un correo de confirmación a tu correo.
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="showErrors.length != 0">
+    <ul>
+      <li *ngFor="let error of showErrors">{{ error }}</li>
+    </ul>
+  </div>
+
+  <form [formGroup]="form" (submit)="register()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Nombre del usuario"
+        formControlName="name"
+        [class.is-valid]="form.get('name')?.valid && form.get('name')?.touched"
+        [class.is-invalid]="
+          form.get('name')?.invalid && form.get('name')?.touched
+        "
+      />
+      <span class="invalid-feedback" *ngIf="angForm.name.errors?.required">
+        El correo es requerido
+      </span>
+      <span class="invalid-feedback" *ngIf="angForm.name.errors?.minlength">
+        Minimo 3 caracteres
+      </span>
+      <span class="invalid-feedback" *ngIf="angForm.name.errors?.maxlength">
+        Maximo 255 caracteres
+      </span>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Ingrese Correo Electronico"
+        formControlName="email"
+        [class.is-valid]="
+          form.get('email')?.valid && form.get('email')?.touched
+        "
+        [class.is-invalid]="
+          form.get('email')?.invalid && form.get('email')?.touched
+        "
+      />
+      <span class="invalid-feedback" *ngIf="angForm.email.errors?.required">
+        El correo es requerido
+      </span>
+      <span class="invalid-feedback" *ngIf="angForm.email.errors?.email">
+        Ingrese un correo valido
+      </span>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Ingrese Contraseña"
+        formControlName="password"
+        [class.is-valid]="
+          form.get('password')?.valid && form.get('password')?.touched
+        "
+        [class.is-invalid]="
+          form.get('password')?.invalid && form.get('password')?.touched
+        "
+      />
+      <span class="invalid-feedback" *ngIf="angForm.password.errors?.required">
+        La contraseña es requerida
+      </span>
+      <span class="invalid-feedback" *ngIf="angForm.password.errors?.minlength">
+        Minimo 6 caracteres
+      </span>
+    </div>
+    <div class="mb-3">
+      <label for="password_confirmation" class="form-label"
+        >Confirmar Contraseña</label
+      >
+      <input
+        type="password"
+        class="form-control"
+        id="password_confirmation"
+        placeholder="Ingrese Contraseña"
+        formControlName="password_confirmation"
+        [class.is-valid]="
+          form.get('password_confirmation')?.valid &&
+          form.get('password_confirmation')?.touched
+        "
+        [class.is-invalid]="
+          form.get('password_confirmation')?.invalid &&
+          form.get('password_confirmation')?.touched
+        "
+      />
+      <span
+        class="invalid-feedback"
+        *ngIf="angForm.password_confirmation.errors?.required"
+      >
+        La confirmacion de la contraseña es requerida
+      </span>
+      <span
+        class="invalid-feedback"
+        *ngIf="angForm.password_confirmation.errors?.minlength"
+      >
+        Minimo 6 caracteres
+      </span>
+    </div>
+    <div class="d-grid gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg"
+        [disabled]="form.invalid"
+      >
+        <div *ngIf="!loading">Registrase</div>
+        <div class="spinner-border text-light" role="status" *ngIf="loading">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </button>
+    </div>
+  </form>
+</div>

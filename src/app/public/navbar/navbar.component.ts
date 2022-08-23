@@ -3,13 +3,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
+  ngOnInit(): void {}
+
+  isActive(path: string): boolean {
+    return window.location.pathname === path;
+  }
 }

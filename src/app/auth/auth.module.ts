@@ -6,6 +6,7 @@ import { NotesComponent } from './notes/notes.component';
 import { AddEditComponent } from './notes/add-edit/add-edit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -19,7 +20,8 @@ import { TasksComponent } from './tasks/tasks.component';
     TasksComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class AuthModule { }
