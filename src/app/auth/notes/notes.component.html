@@ -1,1 +1,41 @@
-<p>notes works!</p>
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div class="alert alert-warning" *ngIf="notes.length === 0 && !loading">
+  <strong>No tienes notas</strong>
+</div>
+
+<div class="container" *ngIf="!loading">
+  <div class="row">
+    <div class="card col-3 m-2" style="width: 16rem" *ngFor="let note of notes">
+      <div class="card-body">
+        <h6 class="card-title">
+          {{
+            note.title === "" ? "No tiene titulo" : (note.title | slice: 0:45)
+          }}
+        </h6>
+        <p class="card-text">
+          {{
+            note.content === ""
+              ? "No tiene cuerpo"
+              : (note.content | slice: 0:100)
+          }}...
+          {{ note.id }}
+        </p>
+        <div class="d-flex justify-content-end">
+          <a
+            href=""
+            class="btn btn-warning btn-sm"
+            routerLink="edit/{{ note.id }}"
+            >Edit</a
+          >
+          <button
+            class="btn btn-danger btn-sm ms-2"
+            (click)="deleteNote(note.id!)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
