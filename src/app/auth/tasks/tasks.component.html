@@ -9,7 +9,9 @@
           placeholder="Ingrese el contenido de la tarea"
           [(ngModel)]="content"
         />
-        <button class="btn btn-primary btn-lg ms-2">Agregar</button>
+        <button class="btn btn-primary btn-lg ms-2" (click)="addTask()">
+          Agregar
+        </button>
       </div>
     </div>
 
@@ -26,12 +28,17 @@
               value=""
               id="flexCheckDefault"
               [checked]="task.complete"
+              (click)="changeStatus(task.id!)"
             />
           </div>
 
-          <p>{{ task.content }}</p>
+          <p [class.text-decoration-line-through]="task.complete">
+            {{ task.content }}
+          </p>
 
-          <button class="btn btn-danger btn-sm">Eliminar</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id!)">
+            Eliminar
+          </button>
         </div>
       </div>
     </div>

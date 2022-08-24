@@ -34,4 +34,41 @@ export class TasksComponent implements OnInit {
       }
     );
   }
+
+  addTask() {
+    let task: Task = {
+      content: this.content,
+    };
+    this._taskService.addTask(task).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  deleteTask(id: number) {
+    this._taskService.deleteTask(id).subscribe(
+      (data) => {
+        this.getTasks();
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  changeStatus(id: number) {
+    this._taskService.changeStatus(id).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }
