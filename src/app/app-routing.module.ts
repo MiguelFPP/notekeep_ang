@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { AddEditComponent } from './auth/notes/add-edit/add-edit.component';
 import { NotesComponent } from './auth/notes/notes.component';
+import { ProfileComponent } from './auth/profile/profile.component';
 import { TasksComponent } from './auth/tasks/tasks.component';
 import { AuthGuard } from './core/auth.guard';
 import { LoginComponent } from './public/login/login.component';
@@ -18,13 +19,19 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
     ],
   },
-  {path:'user', component:AuthComponent, canActivate:[AuthGuard],children:[
-    {path:'', component:NotesComponent},
-    {path:'add', component:AddEditComponent},
-    {path:'edit/:id', component:AddEditComponent},
-    /* tasks */
-    {path:'tasks', component:TasksComponent},
-  ]},
+  {
+    path: 'user',
+    component: AuthComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', component: NotesComponent },
+      { path: 'add', component: AddEditComponent },
+      { path: 'edit/:id', component: AddEditComponent },
+      /* tasks */
+      { path: 'tasks', component: TasksComponent },
+      { path: 'profile', component: ProfileComponent },
+    ],
+  },
   { path: '**', redirectTo: '' },
 ];
 

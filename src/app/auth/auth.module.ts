@@ -9,7 +9,7 @@ import { AddEditComponent } from './notes/add-edit/add-edit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { SpinnerComponent } from '../components/spinner/spinner.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,6 @@ import { FormsModule } from '@angular/forms';
     TasksComponent,
     SpinnerComponent,
   ],
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
 })
 export class AuthModule {}

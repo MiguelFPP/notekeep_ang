@@ -1,1 +1,117 @@
-<p>profile works!</p>
+<div class="mt-4 p-4">
+  <!-- <div class="container" *ngIf="errors">
+    <p class="text-center text-danger text-lg-start">
+      Credenciales incorrectas
+    </p>
+  </div> -->
+  <h3>Informacion de Perfil</h3>
+  <form class="mt-2" [formGroup]="formInfo" (submit)="updateProfile()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Ingrese un nombre de usuario"
+        formControlName="name"
+        [class.is-valid]="
+          formInfo.get('name')?.valid && formInfo.get('name')?.touched
+        "
+        [class.is-invalid]="
+          formInfo.get('name')?.invalid && formInfo.get('name')?.touched
+        "
+      />
+      <span class="invalid-feedback" *ngIf="angFormInfo.name.errors?.required">
+        El nombre es requerido
+      </span>
+      <span class="invalid-feedback" *ngIf="angFormInfo.name.errors?.maxlength">
+        Maximo 255 caracteres
+      </span>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Ingrese un correo electronico"
+        formControlName="email"
+        [class.is-valid]="
+          formInfo.get('email')?.valid && formInfo.get('email')?.touched
+        "
+        [class.is-invalid]="
+          formInfo.get('email')?.invalid && formInfo.get('email')?.touched
+        "
+      />
+      <span class="invalid-feedback" *ngIf="angFormInfo.email.errors?.required">
+        El correo es requerido
+      </span>
+      <span class="invalid-feedback" *ngIf="angFormInfo.email.errors?.email">
+        Ingresa un correo valido
+      </span>
+      <span
+        class="invalid-feedback"
+        *ngIf="angFormInfo.email.errors?.maxlength"
+      >
+        Maximo 255 caracteres
+      </span>
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary btn-lg" [disabled]="formInfo.invalid">
+        Cambiar Datos
+      </button>
+    </div>
+  </form>
+</div>
+
+<hr />
+
+<div class="mt-2 p-4">
+  <!-- <div class="container" *ngIf="errors">
+    <p class="text-center text-danger text-lg-start">
+      Credenciales incorrectas
+    </p>
+  </div> -->
+  <h3>Cambiar Contraseña</h3>
+  <form class="mt-2">
+    <div class="mb-3">
+      <label for="old_password" class="form-label">Contraseña Actual</label>
+      <input
+        type="password"
+        class="form-control"
+        id="old_password"
+        name="old_password"
+        placeholder="Ingrese su contraseña actual"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Nueva Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Ingrese su nueva contraseña"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password_confirmation" class="form-label"
+        >Confirmar nueva contraseña</label
+      >
+      <input
+        type="password"
+        class="form-control"
+        id="password_confirmation"
+        name="password_confirmation"
+        placeholder="Repita su nueva contraseña"
+      />
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary btn-lg">
+        Cambiar Contraseña
+      </button>
+    </div>
+  </form>
+</div>
