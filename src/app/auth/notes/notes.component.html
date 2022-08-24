@@ -5,6 +5,9 @@
 </div>
 
 <div class="container" *ngIf="!loading">
+  <div class="d-flex justify-content-end mb-2">
+    <a class="btn btn-secondary btn-md" routerLink="add">Agregar</a>
+  </div>
   <div class="row">
     <div class="card col-3 m-2" style="width: 16rem" *ngFor="let note of notes">
       <div class="card-body">
@@ -19,7 +22,6 @@
               ? "No tiene cuerpo"
               : (note.content | slice: 0:100)
           }}...
-          {{ note.id }}
         </p>
         <div class="d-flex justify-content-end">
           <a

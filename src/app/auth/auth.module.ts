@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthComponent } from './auth.component';
 import { NotesComponent } from './notes/notes.component';
 import { AddEditComponent } from './notes/add-edit/add-edit.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TasksComponent } from './tasks/tasks.component';
-import { RouterModule } from '@angular/router';
 import { SpinnerComponent } from '../components/spinner/spinner.component';
-
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,11 +19,8 @@ import { SpinnerComponent } from '../components/spinner/spinner.component';
     AddEditComponent,
     ProfileComponent,
     TasksComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule, FormsModule],
 })
-export class AuthModule { }
+export class AuthModule {}
