@@ -11,6 +11,8 @@ import { ProfileService } from 'src/app/sevices/profile.service';
 export class ProfileComponent implements OnInit {
   formInfo: FormGroup;
   formPass: FormGroup;
+  errorsPass: any = [];
+  errorsInfo: any = [];
   constructor(
     private _profileService: ProfileService,
     private fb: FormBuilder
@@ -65,7 +67,11 @@ export class ProfileComponent implements OnInit {
         localStorage.setItem('user', JSON.stringify(data));
       },
       (error) => {
+        this.errorsInfo = [];
         console.error(error);
+        if (error.status === 422) {
+          this.validationErrors(error.error.errors, 'info');
+        }
       }
     );
   }
@@ -80,9 +86,36 @@ export class ProfileComponent implements OnInit {
           console.log(data);
         },
         (error) => {
-          console.error(error);
+          this.errorsPass = [];
+          if (error.status === 422) {
+            this.validationErrors(error.error.errors, 'pass');
+          } else if (error.status === 400) {
+            this.errorsPass.push('La contraseña actual no coincide');
+          }
         }
       );
+  }
+
+  validationErrors(errors: any, type: string) {
+    switch (type) {
+      case 'info':
+        for (const key in errors) {
+          if (errors.hasOwnProperty(key)) {
+            this.errorsInfo.push(errors[key]);
+          }
+        }
+        console.log(this.errorsInfo);
+        break;
+      case 'pass':
+        for (const key in errors) {
+          if (errors.hasOwnProperty(key)) {
+            this.errorsPass.push(errors[key]);
+          }
+        }
+        break;
+      default:
+        break;
+    }
   }
 
   get angFormInfo(): any {
