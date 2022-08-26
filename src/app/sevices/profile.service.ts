@@ -32,4 +32,20 @@ export class ProfileService {
       headers: this.headers,
     });
   }
+
+  public changePassword(
+    old_password: string,
+    password: string,
+    password_confirmation: string
+  ): Observable<any> {
+    return this.http.post(
+      `${this.api}/profile/password`,
+      {
+        old_password,
+        password,
+        password_confirmation,
+      },
+      { headers: this.headers }
+    );
+  }
 }
